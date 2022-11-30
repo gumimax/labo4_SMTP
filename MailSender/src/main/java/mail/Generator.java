@@ -2,22 +2,19 @@ package mail;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class Generator {
 
-	private Personne[][] tab;
-	private int nbGroup;
+	private final Personne[][] tab;
 
 	// va générer les grp de personne. il faut 1 envoyeur et 2 receveur mini
 	// donc 3 personnes
 	// si le nb de grp demandé est trop grand par rapport à la list de la list->
 	// renvoyer une erreur taille grp trop grande
 	public Generator(int nbGroup) throws FileNotFoundException {
-		this.nbGroup = nbGroup;
 
 
 		// arraylist to store strings

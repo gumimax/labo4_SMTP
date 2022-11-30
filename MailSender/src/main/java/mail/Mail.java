@@ -1,43 +1,61 @@
 package mail;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
 public class Mail {
 
-	private String debut;
-	private String envoyeur;
-	private String joke;
-	private String receveurs;
-	private String data;
-	private String corps;
+	private String msg;
 
-	private String fin;
 
-	public Mail(Personne[] tab){
+	public Mail(Personne[] tab) throws FileNotFoundException {
 
-		debut = "EHLO me.com\r\n";
+		// arraylist to store strings
+		List<String> listOfStrings = new ArrayList<String>();
 
-		envoyeur = "MAIL FROM:<" + tab[0] + ">\r\n";
+		// load content of file based on specific delimiter
+		Scanner sc = new Scanner(new FileInputStream("MailSender/src/main/java" +
+			"/config/prank.utf8"),
+			StandardCharsets.UTF_8).useDelimiter("==");
+		String str;
+
+		// checking end of file
+		while (sc.hasNext()) {
+			str = sc.next();
+			// adding each string to arraylist
+			listOfStrings.add(str);
+		}
+		// mélange la liste, comme ça on change de prank à chaque fois
+		Collections.shuffle(listOfStrings);
+		// convert any arraylist to array
+		String[] array = new String[listOfStrings.size()];
+
+		array = listOfStrings.toArray(array);
+
+		msg = "EHLO me.com\r\n" + "MAIL FROM:<" + tab[0] + ">\r\n";
+		msg += "RCPT TO:<";
 
 		for(int k = 1; k < tab.length; ++k){
-			receveurs = "RCPT TO:<" + tab[k] + "\r\n";
+			if(k != tab.length - 1) {
+				msg += tab[k] + ":";
+			}else{
+				msg += tab[k] + ">\r\n";
+			}
 		}
-		data = "DATA\r\n";
-		//put joke...
-		corps = "dd";
-		fin = "QUIT\r\n";
+		msg += "DATA\r\n";
+		msg += "Subject: Info importantes\r\n\r\n";
+		msg += array[0] + "\n\r\n.\r\n";
+		msg +=  "QUIT\r\n";
+
+
 	}
 
-	// ici on créer un string utf8 avec tous les champs
-	// un mail avec comme attributs les champs ?
-
-	// FROM += = generator.envoyeur
-	// RCPT to += generator.receveurs
-
-	// DATA += subject: Salut les amis \r\n + prank.
-
-	// QUIT = "QUIT\r\n"
-	// etc etc
-
-
-	// pour ajouter plusieurs reveceur au champs RCPT to: juste coller les adresses
-	// avec un ; entre-elles
+	public String getMsg() {
+		return msg;
+	}
 }
