@@ -37,7 +37,7 @@ public class MailSender {
 
 			// génère et envoie les mails
 			for (int  k = 0; k < grpNB; ++k){
-				Mail mail = new Mail(g1.getGrp(k));
+				Mail mail = new Mail(g1.getGrpTab(k));
 				new ClientSMTP(mail, tokens[0], grpNB);
 			}
 

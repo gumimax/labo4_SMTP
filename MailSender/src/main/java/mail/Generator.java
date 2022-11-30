@@ -56,7 +56,7 @@ public class Generator {
 		}
 	}
 
-	public Object getGrp(int k) {
-
+	public Personne[] getGrpTab(int k) {
+		return tab[k];
 	}
 }
