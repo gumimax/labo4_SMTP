@@ -9,7 +9,4 @@ public class Personne {
 	public String toString() {
 		return address;
 	}
-
-	// créer les personnes ? vraiment... vu qu'on doit utiliser le concept 00
-
 }

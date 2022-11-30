@@ -12,7 +12,6 @@ public class Mail {
 
 	private String msg;
 
-
 	public Mail(Personne[] tab) throws FileNotFoundException {
 
 		// arraylist to store strings
@@ -49,10 +48,10 @@ public class Mail {
 		}
 		msg += "DATA\r\n";
 		msg += "Subject: Info importantes\r\n\r\n";
-		msg += array[0] + "\n\r\n.\r\n";
-		msg +=  "QUIT\r\n";
-
-
+		msg += array[0] + "\n\r\n.\r\nQUIT\r\n";
+		/*
+		msg += "\r\n";
+		msg += "QUIT\r\n";*/
 	}
 
 	public String getMsg() {
