@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Mail {
 
-	private String msg;
+	private String[] msg;
 
 	public Mail(Personne[] tab) throws FileNotFoundException {
 
@@ -38,25 +38,28 @@ public class Mail {
 
 		array = listOfStrings.toArray(array);
 
-		msg = "EHLO me.com\r\n" + "MAIL FROM:<" + tab[0] + ">\r\n";
-		msg += "RCPT TO:<";
+		// nombre de champs
+		msg = new String[7];
+
+		msg[0] = "EHLO me.com\r\n";
+		msg[1] = "MAIL FROM:<" + tab[0] + ">\r\n";
+		msg[2] = "RCPT TO:<";
 
 		for(int k = 1; k < tab.length; ++k){
 			if(k != tab.length - 1) {
-				msg += tab[k] + ":";
+				msg[2] += tab[k] + ":";
 			}else{
-				msg += tab[k] + ">\r\n";
+				msg[2] += tab[k] + ">\r\n";
 			}
 		}
-		msg += "DATA\r\n";
-		msg += "Subject: Info importantes\r\n\r\n";
-		msg += array[0] + "\n\r\n.\r\nQUIT\r\n";
-		/*
-		msg += "\r\n";
-		msg += "QUIT\r\n";*/
+		msg[3] = "DATA\r\n";
+		msg[4] = "Subject: Info importantes\r\n\r\n";
+		msg[5] = array[0] + "\n\r\n.\r\n";
+		msg[6] = "QUIT\r\n";
+
 	}
 
-	public String getMsg() {
+	public String[] getMsgs() {
 		return msg;
 	}
 }

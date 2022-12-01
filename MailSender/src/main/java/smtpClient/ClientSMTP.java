@@ -28,14 +28,14 @@ public class ClientSMTP {
 			LOG.log(Level.SEVERE,null, ex);
 			return;
 		}
-		handler(clientSocket, mail.getMsg());
+		handler(clientSocket, mail.getMsgs());
 	}
 	/**
 	 * envoye les requêtes smtp et recupère les réponses server
 	 * @param clientSocket
 	 * @param request
 	 */
-	private void handler(Socket clientSocket, String request){
+	private void handler(Socket clientSocket, String[] request){
 		//buffer in et out
 		BufferedWriter out = null;
 		BufferedReader in = null;
@@ -48,13 +48,17 @@ public class ClientSMTP {
 				new BufferedReader(new InputStreamReader(clientSocket.getInputStream(),
 					StandardCharsets.UTF_8));
 
-			out.write(request);
-			out.flush();
+			for(String msg : request) {
 
-			LOG.log(Level.INFO, "*** Response sent by the server: ***");
-			String line;
-			while ((line = in.readLine()) != null) {
+				out.write(msg);
+				out.flush();
+
+				LOG.log(Level.INFO, "*** Response sent by the server: ***");
+				String line;
+				line = in.readLine();
+				
 				LOG.log(Level.INFO, line);
+
 			}
 		} catch (IOException ex) {
 			LOG.log(Level.SEVERE, ex.toString(), ex);
