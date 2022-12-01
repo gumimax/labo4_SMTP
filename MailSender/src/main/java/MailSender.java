@@ -23,6 +23,8 @@ public class MailSender {
 			// charges les proptiétés
 			prop.load(input);
 
+			input.close();
+
 			// parsing en un tab de string
 			String[] tokens = new String[prop.size()];
 
@@ -30,13 +32,14 @@ public class MailSender {
 			tokens[1] = prop.getProperty("smtpServerPort");
 			tokens[2] = prop.getProperty("grpNb");
 
+
 			int grpNB = Integer.parseInt(tokens[2]);
 
 			// génère les grps
 			Generator g1 = new Generator(grpNB);
 
 			// génère et envoie les mails
-			for (int  k = 0; k < grpNB; ++k){
+			for (int k = 0; k < grpNB; ++k) {
 				Mail mail = new Mail(g1.getGrpTab(k));
 				new ClientSMTP(mail, tokens[0], Integer.parseInt(tokens[1])).SMTPRequests();
 			}

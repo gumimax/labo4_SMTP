@@ -29,7 +29,9 @@ public class Mail {
 			// adding each string to arraylist
 			listOfStrings.add(str);
 		}
-		// mélange la liste, comme ça on change de prank à chaque fois
+
+		sc.close();
+		// mélange la liste, comme ça on change de prank à chaque envoie de mails
 		Collections.shuffle(listOfStrings);
 		// convert any arraylist to array
 		String[] array = new String[listOfStrings.size()];

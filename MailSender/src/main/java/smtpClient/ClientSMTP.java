@@ -31,7 +31,7 @@ public class ClientSMTP {
 		handler(clientSocket, mail.getMsg());
 	}
 	/**
-	 * envoye la requête smtp et recupère le réponse server
+	 * envoye les requêtes smtp et recupère les réponses server
 	 * @param clientSocket
 	 * @param request
 	 */

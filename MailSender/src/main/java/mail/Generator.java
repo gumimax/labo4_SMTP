@@ -32,6 +32,9 @@ public class Generator {
 			// adding each string to arraylist
 			listOfStrings.add(str);
 		}
+
+		sc.close();
+
 		// mélange la liste, comme ça on change de sender à chaque fois
 		Collections.shuffle(listOfStrings);
 		// convert any arraylist to array
@@ -45,7 +48,7 @@ public class Generator {
 		}
 
 		tab = new Personne[nbGroup][tailleGrp];
-
+		//ajouter mod % comme ça on peut utiliser tous les mails dispo ?
 		for (int k = 0; k < nbGroup; ++k){
 			for( int j = 0; j < tailleGrp; ++j){
 				tab[k][j] = new Personne(array[(nbGroup * k) + j]);
