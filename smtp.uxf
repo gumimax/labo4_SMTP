@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1220</x>
+      <y>210</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Mail
+--
+-msg: final String[]
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1460</x>
+      <y>210</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Generator
+--
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1680</x>
+      <y>210</y>
+      <w>370</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>ClientSMTP
+--
+_-LOG: final Logger_
+-port: final int
+-nomServeur: final String
+
+--
++SMTPRequests(): void
+-handler(clientSocket: Socket, requete: String[]) : void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>950</x>
+      <y>210</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Personne
+--
+-address: String
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

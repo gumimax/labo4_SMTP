@@ -1,3 +1,4 @@
+
 import mail.Generator;
 import mail.Mail;
 import smtpClient.ClientSMTP;
@@ -6,6 +7,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+
+/**
+ * Cette classe représente
+ *
+ * @author : T. Germano, G. Courbat
+ */
 
 public class MailSender {
 

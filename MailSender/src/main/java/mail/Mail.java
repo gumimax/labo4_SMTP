@@ -8,23 +8,28 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Cette classe représente
+ *
+ * @author : T. Germano, G. Courbat
+ */
+
 public class Mail {
 
 	private final String[] msg;
 
 	public Mail(Personne[] tab) throws FileNotFoundException {
 
-		// arraylist to store strings
 		List<String> listOfStrings = new ArrayList<>();
 
 
-		// load content of file based on specific delimiter
+		// charge le body des mails dans un scanner
 		Scanner sc = new Scanner(new FileInputStream("MailSender/src/main/java" +
 			"/config/prank.utf8"),
 			StandardCharsets.UTF_8).useDelimiter("==");
 		String str;
 
-		// checking end of file
+		// ajoute tous les mails dans un arraylist
 		while (sc.hasNext()) {
 			str = sc.next();
 			// adding each string to arraylist
@@ -32,9 +37,11 @@ public class Mail {
 		}
 
 		sc.close();
-		// mélange la liste, comme ça on change de prank à chaque envoie de mails
+
+		// mélange la liste, comme ça on change de prank à chaque envoi de mails
 		Collections.shuffle(listOfStrings);
-		// convert any arraylist to array
+
+		// convertis arraylist en tableau
 		String[] array = new String[listOfStrings.size()];
 
 		array = listOfStrings.toArray(array);
@@ -42,9 +49,12 @@ public class Mail {
 		// nombre de champs
 		msg = new String[7];
 
-		msg[0] = "EHLO me.com\r\n";
-		msg[1] = "MAIL FROM:" + tab[0] + "\r\n";
-		msg[2] = "RCPT TO:";
+
+		{
+			msg[0] = "EHLO me.com\r\n";
+			msg[1] = "MAIL FROM:" + tab[0] + "\r\n";
+			msg[2] = "RCPT TO:";
+		}
 
 		for (int k = 1; k < tab.length; ++k) {
 			if (k != tab.length - 1) {
@@ -54,21 +64,22 @@ public class Mail {
 			}
 		}
 
-		msg[3] = "DATA\r\n";
-		msg[4] = "Content-Type: text/plain; charset=\"utf-8\"\r\n";
-		msg[4] += "From: " + tab[0] + "\r\n";
-		msg[4] += "To: ";
-		for (int k = 1; k < tab.length; ++k) {
-			if (k != tab.length - 1) {
-				msg[4] += tab[k] + ", ";
-			} else {
-				msg[4] += tab[k] + "\r\n";
+		{
+			msg[3] = "DATA\r\n";
+			msg[4] = "Content-Type: text/plain; charset=\"utf-8\"\r\n";
+			msg[4] += "From: " + tab[0] + "\r\n";
+			msg[4] += "To: ";
+			for (int k = 1; k < tab.length; ++k) {
+				if (k != tab.length - 1) {
+					msg[4] += tab[k] + ", ";
+				} else {
+					msg[4] += tab[k] + "\r\n";
+				}
 			}
+			msg[5] = "Subject: Info importantes\r\n\r\n";
+			msg[5] += array[0] + "\r\n.\r\n";
+			msg[6] = "QUIT\r\n";
 		}
-		msg[5] = "Subject: Info importantes\r\n\r\n";
-		msg[5] += array[0] + "\r\n.\r\n";
-		msg[6] = "QUIT\r\n";
-
 	}
 
 	public String[] getMsgs() {

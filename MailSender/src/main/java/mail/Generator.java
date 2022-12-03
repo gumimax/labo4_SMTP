@@ -6,6 +6,12 @@ import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+/**
+ * Cette classe représente
+ *
+ * @author : T. Germano, G. Courbat
+ */
+
 public class Generator {
 
 	private final Personne[][] tab;

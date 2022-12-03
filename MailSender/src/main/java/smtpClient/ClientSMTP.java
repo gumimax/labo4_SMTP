@@ -8,22 +8,36 @@ import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Cette classe représente
+ *
+ * @author : T. Germano, G. Courbat
+ */
+
 public class ClientSMTP {
 
 	static final Logger LOG = Logger.getLogger(ClientSMTP.class.getName());
-	final int port;
-	final String nomServeur;
-	final Mail mail;
+	private final int port;
+	private final String nomServeur;
+	private final Mail mail;
 
+	/**
+	 * Constructeur
+	 * @param mailAEnv
+	 * @param nomServeur
+	 * @param port
+	 */
 	public ClientSMTP(Mail mailAEnv, String nomServeur, int port) {
 		this.port = port;
 		this.nomServeur = nomServeur;
 		this.mail = mailAEnv;
 	}
 
+	/**
+	 * envoye les requêtes smtp et recupère les réponses server
+	 */
 	public void SMTPRequests() {
 		Socket clientSocket;
-
 
 		try {
 			clientSocket = new Socket(nomServeur, port);
