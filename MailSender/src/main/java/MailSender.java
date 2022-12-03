@@ -12,15 +12,13 @@ public class MailSender {
 
 	public static void main(String[] args) {
 
-		// charge les propriétés
-
 		try {
 			InputStream input = new FileInputStream("MailSender/src/main/java/config" +
 				"/config.properties");
 
 			Properties prop = new Properties();
 
-			// charges les proptiétés
+			// charges les propritiétés
 			prop.load(input);
 
 			input.close();

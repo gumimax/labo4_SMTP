@@ -48,18 +48,36 @@ public class ClientSMTP {
 				new BufferedReader(new InputStreamReader(clientSocket.getInputStream(),
 					StandardCharsets.UTF_8));
 
-			for(String msg : request) {
+			String open = in.readLine();
+			LOG.info(open);
+			out.write(request[0]);
+			out.flush();
+			open = in.readLine();
 
-				out.write(msg);
+			if(!open.startsWith("250")){
+				throw new IOException("SMTP ERROR: " + open);
+			}
+			while (open.startsWith("250-")){
+				open = in.readLine();
+				LOG.info(open);
+			}
+
+
+			for(int k = 1; k < request.length; ++k) {
+
+				out.write(request[k]);
 				out.flush();
 
-				LOG.log(Level.INFO, "*** Response sent by the server: ***");
-				String line;
-				line = in.readLine();
-				
-				LOG.log(Level.INFO, line);
+				if(!(k == 4)) {
+					open = in.readLine();
+					LOG.info(open);
+				}
 
 			}
+
+
+
+
 		} catch (IOException ex) {
 			LOG.log(Level.SEVERE, ex.toString(), ex);
 		} finally {
