@@ -10,12 +10,12 @@ import java.util.Scanner;
 
 public class Mail {
 
-	private String[] msg;
+	private final String[] msg;
 
 	public Mail(Personne[] tab) throws FileNotFoundException {
 
 		// arraylist to store strings
-		List<String> listOfStrings = new ArrayList<String>();
+		List<String> listOfStrings = new ArrayList<>();
 
 
 		// load content of file based on specific delimiter
@@ -46,10 +46,10 @@ public class Mail {
 		msg[1] = "MAIL FROM:" + tab[0] + "\r\n";
 		msg[2] = "RCPT TO:";
 
-		for(int k = 1; k < tab.length; ++k){
-			if(k != tab.length - 1) {
+		for (int k = 1; k < tab.length; ++k) {
+			if (k != tab.length - 1) {
 				msg[2] += tab[k] + ";";
-			}else{
+			} else {
 				msg[2] += tab[k] + "\r\n";
 			}
 		}
@@ -58,10 +58,10 @@ public class Mail {
 		msg[4] = "Content-Type: text/plain; charset=\"utf-8\"\r\n";
 		msg[4] += "From: " + tab[0] + "\r\n";
 		msg[4] += "To: ";
-		for(int k = 1; k < tab.length; ++k){
-			if(k != tab.length - 1) {
+		for (int k = 1; k < tab.length; ++k) {
+			if (k != tab.length - 1) {
 				msg[4] += tab[k] + ", ";
-			}else{
+			} else {
 				msg[4] += tab[k] + "\r\n";
 			}
 		}

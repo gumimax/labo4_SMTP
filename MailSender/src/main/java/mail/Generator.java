@@ -18,7 +18,7 @@ public class Generator {
 
 
 		// arraylist to store strings
-		List<String> listOfStrings = new ArrayList<String>();
+		List<String> listOfStrings = new ArrayList<>();
 
 		// load content of file based on specific delimiter
 		Scanner sc = new Scanner(new FileInputStream("MailSender/src/main/java" +
@@ -43,14 +43,14 @@ public class Generator {
 
 		int tailleGrp = array.length / nbGroup;
 
-		if(tailleGrp < 3){
+		if (tailleGrp < 3) {
 			throw new RuntimeException("Nombre de grp trop grand...");
 		}
 
 		tab = new Personne[nbGroup][tailleGrp];
 		//ajouter mod % comme ça on peut utiliser tous les mails dispo ?
-		for (int k = 0; k < nbGroup; ++k){
-			for( int j = 0; j < tailleGrp; ++j){
+		for (int k = 0; k < nbGroup; ++k) {
+			for (int j = 0; j < tailleGrp; ++j) {
 				tab[k][j] = new Personne(array[(nbGroup * k) + j]);
 			}
 		}

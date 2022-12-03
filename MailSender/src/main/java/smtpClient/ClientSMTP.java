@@ -1,6 +1,7 @@
 package smtpClient;
 
 import mail.Mail;
+
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
@@ -11,31 +12,35 @@ public class ClientSMTP {
 
 	static final Logger LOG = Logger.getLogger(ClientSMTP.class.getName());
 	final int port;
-	final String serverName;
+	final String nomServeur;
 	final Mail mail;
-	public ClientSMTP(Mail mailToSend, String serverName, int port){
+
+	public ClientSMTP(Mail mailAEnv, String nomServeur, int port) {
 		this.port = port;
-		this.serverName = serverName;
-		this.mail = mailToSend;
+		this.nomServeur = nomServeur;
+		this.mail = mailAEnv;
 	}
+
 	public void SMTPRequests() {
-		Socket clientSocket = null;
+		Socket clientSocket;
 
 
 		try {
-			clientSocket = new Socket(serverName, port);
+			clientSocket = new Socket(nomServeur, port);
 		} catch (IOException ex) {
-			LOG.log(Level.SEVERE,null, ex);
+			LOG.log(Level.SEVERE, null, ex);
 			return;
 		}
 		handler(clientSocket, mail.getMsgs());
 	}
+
 	/**
 	 * envoye les requêtes smtp et recupère les réponses server
-	 * @param clientSocket
-	 * @param request
+	 *
+	 * @param clientSocket le socket client
+	 * @param requete      le tableau de string contenant les requêtes
 	 */
-	private void handler(Socket clientSocket, String[] request){
+	private void handler(Socket clientSocket, String[] requete) {
 		//buffer in et out
 		BufferedWriter out = null;
 		BufferedReader in = null;
@@ -48,35 +53,32 @@ public class ClientSMTP {
 				new BufferedReader(new InputStreamReader(clientSocket.getInputStream(),
 					StandardCharsets.UTF_8));
 
-			String open = in.readLine();
-			LOG.info(open);
-			out.write(request[0]);
+			String reponse = in.readLine();
+			LOG.info(reponse);
+			out.write(requete[0]);
 			out.flush();
-			open = in.readLine();
+			reponse = in.readLine();
 
-			if(!open.startsWith("250")){
-				throw new IOException("SMTP ERROR: " + open);
+			if (!reponse.startsWith("250")) {
+				throw new IOException("SMTP ERROR: " + reponse);
 			}
-			while (open.startsWith("250-")){
-				open = in.readLine();
-				LOG.info(open);
+			while (reponse.startsWith("250-")) {
+				reponse = in.readLine();
+				LOG.info(reponse);
 			}
 
 
-			for(int k = 1; k < request.length; ++k) {
+			for (int k = 1; k < requete.length; ++k) {
 
-				out.write(request[k]);
+				out.write(requete[k]);
 				out.flush();
 
-				if(!(k == 4)) {
-					open = in.readLine();
-					LOG.info(open);
+				if (!(k == 4)) {
+					reponse = in.readLine();
+					LOG.info(reponse);
 				}
 
 			}
-
-
-
 
 		} catch (IOException ex) {
 			LOG.log(Level.SEVERE, ex.toString(), ex);
@@ -92,7 +94,8 @@ public class ClientSMTP {
 				LOG.log(Level.SEVERE, ex.toString(), ex);
 			}
 			try {
-				if (clientSocket != null && ! clientSocket.isClosed()) clientSocket.close();
+				if (clientSocket != null && !clientSocket.isClosed())
+					clientSocket.close();
 			} catch (IOException ex) {
 				LOG.log(Level.SEVERE, ex.toString(), ex);
 			}
