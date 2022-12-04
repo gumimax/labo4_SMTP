@@ -95,11 +95,87 @@ Et voilà, vous avez un serveur SMTP fictif fonctionnel. Pour pouvoir accéder �
 
 ### Configuration
 
+Les fichiers de configuration se trouve dans le dossier `MailSender/src/main/java/MailSender/config`
+
 #### Serveur SMTP
+
+Nom du fichier : `config.properties`
+
+##### Exemple
+
+```properties
+smtpServerAddress=localhost
+smtpServerPort=25
+...
+```
+
+C'est maintenant que le serveur MockMock entre en jeu. Si vous souhaitez l'utiliser comme présenter ci-dessus, vous pouvez laisser le fichier de configuration telle quelle.
+
+Sinon adaptez les paramètres par rapport à votre serveur SMTP.
+
+#### Nombre de groupes
+
+Nom du fichier : `config.properties`
+
+##### Exemple
+
+```properties
+...
+grpNb=5
+```
+
+Ici vous pouvez spécifiez le nombre de groupe qui va être formé à partir de la liste d'adresse mail fournie. Attention, il faut que le nombre de groupe soit 3 fois moins que le nombre de mails contenus dans la liste !
 
 #### Adresses mails
 
+Nom du fichier : `listOfAddress.utf8`
+
+##### Exemple
+
+```properties
+blabla@bli.com
+blablo@blu.com
+blobli@blo.com
+blabliblu@bla.com
+test@erf.com
+hophop@yep.com
+ewlfwe@ffef.com
+qwdef@fewfb.com
+uhefewfewf@eefefe.com
+ejfiefew@hop.com
+testeebfehfef@wfgr.com
+...
+```
+
+Ici vous pouviez spécifier les adresses mails qui vont être touchées par la campagne de farce faites à l'aide de mails forgés. Attention, le mail doit être conforme, sinon l'application ne marchera pas.
+
 #### Corps de mail
+
+Nom du fichier : `prank.utf8`
+
+##### Exemple
+
+```properties
+Salut les gars,
+Je vous écris pour vous dire que je vais déménager aux Etats-unis d'amérique.
+==
+Bip bop,
+bop bip bip bop bop bop
+bop bap bap bap bip ? bip bop bop !
+
+bip,
+
+bip bop
+...
+```
+
+Ici vous pouvez spécifier une liste de corps de mail qui va être utilisée pour la campagne de farce. La séparation des corps de mails se fait grâce à un double égal, voici un exemple :
+
+```properties
+blabla
+==
+blabaa
+```
 
 ### Compilation
 
