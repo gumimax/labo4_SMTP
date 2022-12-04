@@ -1,6 +1,6 @@
-package smtpClient;
+package MailSender.smtpClient;
 
-import mail.Mail;
+import MailSender.mail.Mail;
 
 import java.io.*;
 import java.net.Socket;
@@ -9,7 +9,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Cette classe représente
+ * Cette classe permet l'envoi de requêtes SMTP à un serveur SMTP.
+ * </br>
+ * Pour cela, il est nécessaire de fournir, l'adresse du serveur mail,
+ * le port du serveur mail, et la liste de requêtes SMTP à envoyer.
  *
  * @author : T. Germano, G. Courbat
  */
@@ -22,7 +25,7 @@ public class ClientSMTP {
 	private final Mail mail;
 
 	/**
-	 * Constructeur
+	 * Constructeur de la classe ClientSMTP
 	 * @param mailAEnv
 	 * @param nomServeur
 	 * @param port
@@ -34,7 +37,7 @@ public class ClientSMTP {
 	}
 
 	/**
-	 * envoye les requêtes smtp et recupère les réponses server
+	 * Se connecte au serveur SMTP et envoie le mail
 	 */
 	public void SMTPRequests() {
 		Socket clientSocket;
@@ -49,10 +52,11 @@ public class ClientSMTP {
 	}
 
 	/**
-	 * envoye les requêtes smtp et recupère les réponses server
+	 * Envoie les requêtes smtp permettant l'envoie du mail forgé
+	 * et récupère les réponses server. Gère les erreurs.
 	 *
 	 * @param clientSocket le socket client
-	 * @param requete      le tableau de string contenant les requêtes
+	 * @param requete      le tableau de string contenant les requêtes à envoyer
 	 */
 	private void handler(Socket clientSocket, String[] requete) {
 		//buffer in et out

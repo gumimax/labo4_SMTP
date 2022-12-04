@@ -53,7 +53,7 @@ Il s'agit simplement d'un serveur SMTP fictif qui n'a aucune fonctionnalité d'e
    docker build --tag mocksmtp/mockmocksmtpserver .
    ```
 
-   Ce script va cloner le dépôt git contenant le serveur MockMock expliqué plus haut, le build puis créer une image docker, en se basant sur le fichier `Dockerfile` ci-dessous, qui permet d'exécuter le serveur MockMock.
+   Ce script va cloner le dépôt git contenant le serveur MockMock expliqué plus haut, le build puis créer une image docker, en se basant sur le fichier `Dockerfile` ci-dessous, qui permet d'exécuter le serveur MockMock dans un conteneur docker.
 
 3. Puis, créez le fichier `Dockerfile` et copier le contenu suivant à l'intérieur :
 
@@ -104,19 +104,79 @@ build l'app et la run..
 ## Implémentation
 ### UML
 
-
-
 ### Classes
-
-#### ClientSMTP
 
 #### Personne
 
-#### Mail
+##### Attribut
+
+###### address: String
+
+Adresse e-mail de la personne
 
 #### Generator
 
+Cette classe permet de générer une liste de groupe aléatoire de taille donnée nbGroup à partir des e-mails contenus dans le fichier listOfAddress.utf8 dans le but d'effectuer une campagne de farce par mail forgé.
 
+Les groupes sont constitués d'un expéditeur et d'au moins 2 destinataires.
+
+##### Attributs
+
+###### tab: Personne[\][]
+
+Stock les groupes formés aléatoirement. Chaque premier membre de groupe est l'expéditeur et le reste sont les destinataires.
+
+##### Méthodes
+
+###### getGrpTab(k: int): Personne[]
+
+Permet d'obtenir le groupe *k* de la liste de groupes formés aléatoirement.
+
+#### Mail
+
+Cette classe permet de générer une liste de requêtes SMTP permettant l'envoi d'un mail forgé de la part d'un expéditeur donné et de destinataires donnés. Ces derniers sont à fournir sous forme de tableau de Personne. Le premier du tableau correspond à l'expéditeur et les autres aux destinataires.
+
+Le corps du mail est choisi aléatoirement dans le fichier prank.utf8.
+
+##### Attributs
+
+###### msg: String[]
+
+Correspond à la liste des requêtes qui permettent l'envoi d'un mail.
+
+#### ClientSMTP
+
+##### Attributs
+
+###### LOG: Logger
+
+Logger pour la classe ClientSMTP.
+
+###### nomServeur: String
+
+Nom d'hôte du serveur SMTP.
+
+###### port: int
+
+Port du serveur SMTP.
+
+###### mail: Mail
+
+mail qui va être envoyé à l'aide du client SMTP.
+
+##### Méthodes
+
+###### SMTPRequests(): void
+
+Initie la connexion avec le serveur SMTP et lance la fonction *handler* afin d'envoyer le mail.
+
+###### handler(clientSocket: Socket, requete: String[]): void
+
+Gère l'envoi des requêtes fournies en paramètres au serveur SMTP qui se trouve à l'autre bout du Socket fourni.
+
+### Fonctionnement
+
+Comme expliqué dans l'utilisation de l'application cliente, elle se repose sur les fichiers de configurations
 
  faire diagramme uml des classes... 
 décrire vite fait ce qu'il se passe dans les classes etc...

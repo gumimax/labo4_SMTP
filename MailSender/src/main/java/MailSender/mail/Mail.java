@@ -1,4 +1,6 @@
-package mail;
+package MailSender.mail;
+
+
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,7 +11,12 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Cette classe représente
+ * Cette classe permet de générer une liste de requêtes SMTP permettant l'envoi d'un mail
+ * forgé de la part d'un expéditeur donné et de destinataires donnés. Ces derniers sont à
+ * fournir sous forme de tableau de Personne. Le premier du tableau correspond à l'expéditeur
+ * et les autres aux destinataires.
+ * </br>
+ * Le corps du mail est choisi aléatoirement dans le fichier prank.utf8.
  *
  * @author : T. Germano, G. Courbat
  */
@@ -24,8 +31,8 @@ public class Mail {
 
 
 		// charge le body des mails dans un scanner
-		Scanner sc = new Scanner(new FileInputStream("MailSender/src/main/java" +
-			"/config/prank.utf8"),
+		Scanner sc = new Scanner(new FileInputStream("MailSender/src/main/java/MailSender/config" +
+			"/prank.utf8"),
 			StandardCharsets.UTF_8).useDelimiter("==");
 		String str;
 
@@ -48,7 +55,6 @@ public class Mail {
 
 		// nombre de champs
 		msg = new String[7];
-
 
 		{
 			msg[0] = "EHLO me.com\r\n";

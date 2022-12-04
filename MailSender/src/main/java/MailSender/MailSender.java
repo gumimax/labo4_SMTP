@@ -1,7 +1,8 @@
+package MailSender;
 
-import mail.Generator;
-import mail.Mail;
-import smtpClient.ClientSMTP;
+import MailSender.smtpClient.ClientSMTP;
+import MailSender.mail.Mail;
+import MailSender.mail.Generator;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,18 +10,17 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * Cette classe représente
+ *
  *
  * @author : T. Germano, G. Courbat
  */
 
 public class MailSender {
 
-
 	public static void main(String[] args) {
 
 		try {
-			InputStream input = new FileInputStream("MailSender/src/main/java/config" +
+			InputStream input = new FileInputStream("MailSender/src/main/java/MailSender/config" +
 				"/config.properties");
 
 			Properties prop = new Properties();
