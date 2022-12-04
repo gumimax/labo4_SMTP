@@ -10,36 +10,37 @@ import java.util.*;
  * Cette classe permet de générer une liste de groupe aléatoire de taille donnée nbGroup
  * à partir des e-mails contenus dans le fichier listOfAddress.utf8 dans le but d'effectuer
  * une campagne de farce par mail forgé.
- * </br>
+ *
  * Les groupes sont constitués d'un expéditeur et d'au moins 2 destinataires.
  *
  * @author : T. Germano, G. Courbat
  */
-
 public class Generator {
 
 	private final Personne[][] tab;
 
-	// va générer les grp de personne. il faut 1 envoyeur et 2 receveur minimum
-	// donc 3 personnes
-	// si le nb de grp demandé est trop grand par rapport à la list de la list->
-	// renvoyer une erreur taille grp trop grande
+	/**
+	 * Constructeur d'un générateur de groupe
+	 * @param nbGroup nombre de groupes de victimes voulus
+	 * @throws FileNotFoundException si le chemin de la liste d'adresse est faux
+	 * @throws RuntimeException si les groupes contiennent moins de 3 personnes
+	 */
 	public Generator(int nbGroup) throws FileNotFoundException {
 
 
-		// arraylist to store strings
+		// arraylist pour stocker les strings
 		List<String> listOfStrings = new ArrayList<>();
 
-		// load content of file based on specific delimiter
+		// charge ce qu'il y a dans le fichier selon le délimiter
 		Scanner sc = new Scanner(new FileInputStream("MailSender/src/main/java" +
 			"/MailSender/config/listOfAddress.utf8"),
 			StandardCharsets.UTF_8).useDelimiter("\n");
 		String str;
 
-		// checking end of file
+		// check la fin de fichier
 		while (sc.hasNext()) {
 			str = sc.next();
-			// adding each string to arraylist
+			// ajout de chaque string dans l'arraylist
 			listOfStrings.add(str);
 		}
 
@@ -58,7 +59,10 @@ public class Generator {
 		}
 
 		tab = new Personne[nbGroup][tailleGrp];
-		//ajouter mod % comme ça on peut utiliser tous les mails dispo ?
+		// Chaque groupe a le même nombre de personnes. Cependant, si mauvais
+		// multiple, il y aura des personnes dans la liste qui ne seront pas prises en
+		// compte pour faire les groupes. Par contre, le nombre de groupes est
+		// respecté.
 		for (int k = 0; k < nbGroup; ++k) {
 			for (int j = 0; j < tailleGrp; ++j) {
 				tab[k][j] = new Personne(array[(nbGroup * k) + j]);
@@ -66,6 +70,11 @@ public class Generator {
 		}
 	}
 
+	/**
+	 * méthode retournant un groupe de personne
+	 * @param k index dans le premier tableau bi-dimensionnel
+	 * @return un groupe de personne (tableau)
+	 */
 	public Personne[] getGrpTab(int k) {
 		return tab[k];
 	}

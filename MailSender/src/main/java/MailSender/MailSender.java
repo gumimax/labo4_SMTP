@@ -10,11 +10,11 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- *
+ * Classe entrée de progromme, Sert à tout initialiser et envoyer les mails au
+ * serveur
  *
  * @author : T. Germano, G. Courbat
  */
-
 public class MailSender {
 
 	public static void main(String[] args) {
@@ -40,7 +40,7 @@ public class MailSender {
 
 			int grpNB = Integer.parseInt(tokens[2]);
 
-			// génère les grps
+			// génère les groupes
 			Generator g1 = new Generator(grpNB);
 
 			// génère et envoie les mails
@@ -53,11 +53,5 @@ public class MailSender {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-
-		// pas oublier d'ajouter la gestion d'erreur
-
-		// Pour finir faudra faire le read.me + ajouter un pti uml de l'app...
-
-
 	}
 }

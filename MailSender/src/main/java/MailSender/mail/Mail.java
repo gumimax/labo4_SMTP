@@ -1,7 +1,5 @@
 package MailSender.mail;
 
-
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
@@ -15,16 +13,21 @@ import java.util.Scanner;
  * forgé de la part d'un expéditeur donné et de destinataires donnés. Ces derniers sont à
  * fournir sous forme de tableau de Personne. Le premier du tableau correspond à l'expéditeur
  * et les autres aux destinataires.
- * </br>
+ *
  * Le corps du mail est choisi aléatoirement dans le fichier prank.utf8.
  *
  * @author : T. Germano, G. Courbat
  */
-
 public class Mail {
 
 	private final String[] msg;
 
+	/**
+	 * Constructeur d'un mail. Le mail contient les requêtes pour l'envoie au
+	 * serveur smtp
+	 * @param tab les groupes de personne (victimes)
+	 * @throws FileNotFoundException si le chemin de la config est erroné
+	 */
 	public Mail(Personne[] tab) throws FileNotFoundException {
 
 		List<String> listOfStrings = new ArrayList<>();
@@ -39,7 +42,7 @@ public class Mail {
 		// ajoute tous les mails dans un arraylist
 		while (sc.hasNext()) {
 			str = sc.next();
-			// adding each string to arraylist
+			// ajoute les strings dans l'arraylist
 			listOfStrings.add(str);
 		}
 
@@ -54,6 +57,7 @@ public class Mail {
 		array = listOfStrings.toArray(array);
 
 		// nombre de champs
+		// implémantation des requêtes smtp
 		msg = new String[7];
 
 		{
@@ -88,6 +92,10 @@ public class Mail {
 		}
 	}
 
+	/**
+	 * méthode retournant le tableau de String contenant les instructions
+	 * @return un tableau de string
+	 */
 	public String[] getMsgs() {
 		return msg;
 	}

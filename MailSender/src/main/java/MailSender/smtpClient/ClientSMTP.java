@@ -10,13 +10,12 @@ import java.util.logging.Logger;
 
 /**
  * Cette classe permet l'envoi de requêtes SMTP à un serveur SMTP.
- * </br>
+ *
  * Pour cela, il est nécessaire de fournir, l'adresse du serveur mail,
- * le port du serveur mail, et la liste de requêtes SMTP à envoyer.
+ * le port du serveur mail et la liste de requêtes SMTP à envoyer.
  *
  * @author : T. Germano, G. Courbat
  */
-
 public class ClientSMTP {
 
 	static final Logger LOG = Logger.getLogger(ClientSMTP.class.getName());
@@ -26,9 +25,9 @@ public class ClientSMTP {
 
 	/**
 	 * Constructeur de la classe ClientSMTP
-	 * @param mailAEnv
-	 * @param nomServeur
-	 * @param port
+	 * @param mailAEnv le mail contenant les requêtes
+	 * @param nomServeur le nom du serveur SMTP
+	 * @param port le port de connection au serveur SMTP
 	 */
 	public ClientSMTP(Mail mailAEnv, String nomServeur, int port) {
 		this.port = port;
@@ -57,6 +56,8 @@ public class ClientSMTP {
 	 *
 	 * @param clientSocket le socket client
 	 * @param requete      le tableau de string contenant les requêtes à envoyer
+	 * @throws IOException si le serveur envoie un msg d'erreur ou s'il y a un
+	 * problème avec le socket ou les buffers.
 	 */
 	private void handler(Socket clientSocket, String[] requete) {
 		//buffer in et out
@@ -70,13 +71,14 @@ public class ClientSMTP {
 			in =
 				new BufferedReader(new InputStreamReader(clientSocket.getInputStream(),
 					StandardCharsets.UTF_8));
-
+			// lis le msg d'accueil du serveur
 			String reponse = in.readLine();
 			LOG.info(reponse);
 			out.write(requete[0]);
 			out.flush();
 			reponse = in.readLine();
 
+			// check les premières réponses serveur
 			if (!reponse.startsWith("250")) {
 				throw new IOException("SMTP ERROR: " + reponse);
 			}
@@ -90,7 +92,8 @@ public class ClientSMTP {
 
 				out.write(requete[k]);
 				out.flush();
-
+				// Quand on fait le corps du mail, on ne veut pas être en attente d'une
+				// reponse du serveur.
 				if (!(k == 4)) {
 					reponse = in.readLine();
 					LOG.info(reponse);
@@ -118,6 +121,5 @@ public class ClientSMTP {
 				LOG.log(Level.SEVERE, ex.toString(), ex);
 			}
 		}
-
 	}
 }

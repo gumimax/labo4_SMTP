@@ -177,12 +177,6 @@ blabla
 blabaa
 ```
 
-### Compilation
-
-## Instruction de configuration du client:  
-Fichier config à disposition, --> remplacer les vals pour changer les params(port,
-adresse et nb de grp)...
-
 build l'app et la run..
 
 ## Implémentation
