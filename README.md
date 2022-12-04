@@ -223,14 +223,7 @@ Ensuite, lancez la commande suivante pour mettre en route votre campagne de farc
 java -jar src-1.0-SNAPSHOT.jar
 ```
 
-Et *voilà*, votre campagne de farce est en route !    
-
-## Instruction de configuration du client:  
-
-Fichier config à disposition, --> remplacer les vals pour changer les params(port,
-adresse et nb de grp)...
-
-build l'app et la run..
+Et *voilà*, votre campagne de farce est en route !
 
 ## Implémentation
 ### UML
@@ -313,3 +306,14 @@ Gère l'envoi des requêtes fournies en paramètres au serveur SMTP qui se trouv
 
 
 
+### Exemple d’envois d'un courriel farce
+
+#### Côté client
+
+![image-20221204222622228](figures/clientSide.png)
+
+#### Côté serveur
+
+![image-20221204222725266](figures/serverSide.png)
+
+![image-20221204222753210](figures/serveur.png)
