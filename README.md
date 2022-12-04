@@ -93,7 +93,15 @@ Et voilà, vous avez un serveur SMTP fictif fonctionnel. Pour pouvoir accéder �
 
 ## Utilisation de l'application client
 
+### Configuration
 
+#### Serveur SMTP
+
+#### Adresses mails
+
+#### Corps de mail
+
+### Compilation
 
 ## Instruction de configuration du client:  
 Fichier config à disposition, --> remplacer les vals pour changer les params(port,
@@ -103,6 +111,8 @@ build l'app et la run..
 
 ## Implémentation
 ### UML
+
+![classes](../media/classes.jpg)
 
 ### Classes
 
@@ -176,12 +186,7 @@ Gère l'envoi des requêtes fournies en paramètres au serveur SMTP qui se trouv
 
 ### Fonctionnement
 
-Comme expliqué dans l'utilisation de l'application cliente, elle se repose sur les fichiers de configurations
-
- faire diagramme uml des classes... 
-décrire vite fait ce qu'il se passe dans les classes etc...
-
-ajouter screen shoot de l'app dialogue client-serveur
+![scenario](../media/scenario.jpg)
 
 
 
