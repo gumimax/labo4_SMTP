@@ -32,9 +32,10 @@ public class Mail {
 
 		List<String> listOfStrings = new ArrayList<>();
 
+		String currentPath = System.getProperty("user.dir");
 
 		// charge le body des mails dans un scanner
-		Scanner sc = new Scanner(new FileInputStream("MailSender/src/main/java/MailSender/config" +
+		Scanner sc = new Scanner(new FileInputStream(currentPath + "/../src/main/java/MailSender/config" +
 			"/prank.utf8"),
 			StandardCharsets.UTF_8).useDelimiter("==");
 		String str;

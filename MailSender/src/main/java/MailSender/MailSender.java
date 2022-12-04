@@ -20,7 +20,9 @@ public class MailSender {
 	public static void main(String[] args) {
 
 		try {
-			InputStream input = new FileInputStream("MailSender/src/main/java/MailSender/config" +
+			String currentPath = System.getProperty("user.dir");
+
+			InputStream input = new FileInputStream(currentPath + "/../src/main/java/MailSender/config" +
 				"/config.properties");
 
 			Properties prop = new Properties();
