@@ -13,7 +13,7 @@ import java.util.Scanner;
  * forgé de la part d'un expéditeur donné et de destinataires donnés. Ces derniers sont à
  * fournir sous forme de tableau de Personne. Le premier du tableau correspond à l'expéditeur
  * et les autres aux destinataires.
- *
+ * <p>
  * Le corps du mail est choisi aléatoirement dans le fichier prank.utf8.
  *
  * @author : T. Germano, G. Courbat
@@ -25,6 +25,7 @@ public class Mail {
 	/**
 	 * Constructeur d'un mail. Le mail contient les requêtes pour l'envoie au
 	 * serveur smtp
+	 *
 	 * @param tab les groupes de personne (victimes)
 	 * @throws FileNotFoundException si le chemin de la config est erroné
 	 */
@@ -61,11 +62,11 @@ public class Mail {
 		// implémantation des requêtes smtp
 		msg = new String[7];
 
-		{
-			msg[0] = "EHLO me.com\r\n";
-			msg[1] = "MAIL FROM:" + tab[0] + "\r\n";
-			msg[2] = "RCPT TO:";
-		}
+
+		msg[0] = "EHLO me.com\r\n";
+		msg[1] = "MAIL FROM:" + tab[0] + "\r\n";
+		msg[2] = "RCPT TO:";
+
 
 		for (int k = 1; k < tab.length; ++k) {
 			if (k != tab.length - 1) {
@@ -75,26 +76,27 @@ public class Mail {
 			}
 		}
 
-		{
-			msg[3] = "DATA\r\n";
-			msg[4] = "Content-Type: text/plain; charset=\"utf-8\"\r\n";
-			msg[4] += "From: " + tab[0] + "\r\n";
-			msg[4] += "To: ";
-			for (int k = 1; k < tab.length; ++k) {
-				if (k != tab.length - 1) {
-					msg[4] += tab[k] + ", ";
-				} else {
-					msg[4] += tab[k] + "\r\n";
-				}
+
+		msg[3] = "DATA\r\n";
+		msg[4] = "Content-Type: text/plain; charset=\"utf-8\"\r\n";
+		msg[4] += "From: " + tab[0] + "\r\n";
+		msg[4] += "To: ";
+		for (int k = 1; k < tab.length; ++k) {
+			if (k != tab.length - 1) {
+				msg[4] += tab[k] + ", ";
+			} else {
+				msg[4] += tab[k] + "\r\n";
 			}
-			msg[5] = "Subject: Info importantes\r\n\r\n";
-			msg[5] += array[0] + "\r\n.\r\n";
-			msg[6] = "QUIT\r\n";
 		}
+		msg[5] = "Subject: Info importantes\r\n\r\n";
+		msg[5] += array[0] + "\r\n.\r\n";
+		msg[6] = "QUIT\r\n";
+
 	}
 
 	/**
 	 * méthode retournant le tableau de String contenant les instructions
+	 *
 	 * @return un tableau de string
 	 */
 	public String[] getMsgs() {
