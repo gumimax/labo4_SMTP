@@ -93,6 +93,12 @@ Et voilà, vous avez un serveur SMTP fictif fonctionnel. Pour pouvoir accéder �
 
 ## Utilisation de l'application client
 
+Pour commencer, clonez le repo git à l'aide de la commande suivante :
+
+```bash
+git clone https://github.com/gumimax/labo4_SMTP.git
+```
+
 ### Compilation
 
 #### Prérequis
@@ -102,12 +108,6 @@ Et voilà, vous avez un serveur SMTP fictif fonctionnel. Pour pouvoir accéder �
 - [Docker](https://www.docker.com/)
 
 #### Build
-
-Pour commencer, clonez le repo git à l'aide de la commande suivante :
-
-```bash
-git clone https://github.com/gumimax/labo4_SMTP.git
-```
 
 Une fois le repo cloné, rendez-vous dans le dossier contenant les sources du projet à l'aide de la commande suivante :
 
