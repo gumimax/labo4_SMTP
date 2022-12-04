@@ -30,8 +30,10 @@ public class Generator {
 		// arraylist to store strings
 		List<String> listOfStrings = new ArrayList<>();
 
+		String currentPath = System.getProperty("user.dir");
+
 		// load content of file based on specific delimiter
-		Scanner sc = new Scanner(new FileInputStream("MailSender/src/main/java" +
+		Scanner sc = new Scanner(new FileInputStream(currentPath + "/../src/main/java" +
 			"/MailSender/config/listOfAddress.utf8"),
 			StandardCharsets.UTF_8).useDelimiter("\n");
 		String str;
