@@ -17,7 +17,7 @@ Plus concrètement, voici ce que l'utilisateur peut faire avec l'application :
 
 ## Qu'est-ce qu'un serveur MockMock ?
 
-MockMock est un serveur SMTP multiplateforme construit en Java. 
+MockMock est un serveur SMTP multiplateforme construit en Java.
 
 Il vous permet de tester si des courriels sortants sont envoyés (sans les envoyer réellement) et de voir à quoi ils ressemblent. 
 
