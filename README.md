@@ -93,6 +93,36 @@ Et voilà, vous avez un serveur SMTP fictif fonctionnel. Pour pouvoir accéder �
 
 ## Utilisation de l'application client
 
+### Compilation
+
+#### Prérequis
+
+- [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+- [Maven](https://maven.apache.org/)
+- [Docker](https://www.docker.com/)
+
+#### Build
+
+Pour commencer, clonez le repo git à l'aide de la commande suivante :
+
+```bash
+git clone https://github.com/gumimax/labo4_SMTP.git
+```
+
+Une fois le repo cloné, rendez-vous dans le dossier contenant les sources du projet à l'aide de la commande suivante :
+
+```bash
+cd labo4_SMTP/MailSender/
+```
+
+Maintenant dans le bon dossier, exécutez la commande suivante pour build le projet :
+
+```bash
+mvn clean package --file pom.xml
+```
+
+Et voilà le projet est build.
+
 ### Configuration
 
 Les fichiers de configuration se trouve dans le dossier `MailSender/src/main/java/MailSender/config`
@@ -177,9 +207,26 @@ blabla
 blabaa
 ```
 
-### Compilation
+### Lancement
+
+Attention, avant de lancer la campagne de farce, veuillez vérifier que le serveur SMTP spécifié dans les fichiers de configuration est bel et bien allumé. 
+
+Maintenant que vous avez build et configuré le projet, il est temps de lancer la campagne de farce ! Pour cela rendez-vous à la racine du dépôt git puis dans le dossier `MailSender/target`. Pour cela, utilisez la commande :
+
+```bash
+cd MailSender/target
+```
+
+Ensuite, lancez la commande suivante pour mettre en route votre campagne de farce :
+
+```bash
+java -jar src-1.0-SNAPSHOT.jar
+```
+
+Et *voilà*, votre campagne de farce est en route !    
 
 ## Instruction de configuration du client:  
+
 Fichier config à disposition, --> remplacer les vals pour changer les params(port,
 adresse et nb de grp)...
 
