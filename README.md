@@ -109,7 +109,7 @@ smtpServerPort=25
 ...
 ```
 
-C'est maintenant que le serveur MockMock entre en jeu. Si vous souhaitez l'utiliser comme présenter ci-dessus, vous pouvez laisser le fichier de configuration telle quelle.
+C'est maintenant que le serveur MockMock entre en jeu. Si vous souhaitez l'utiliser comme présenté ci-dessus, vous pouvez laisser le fichier de configuration telle-quelle.
 
 Sinon adaptez les paramètres par rapport à votre serveur SMTP.
 
@@ -188,7 +188,7 @@ build l'app et la run..
 ## Implémentation
 ### UML
 
-![classes](../media/classes.jpg)
+![classes](./figures/classes.jpg)
 
 ### Classes
 
@@ -262,7 +262,7 @@ Gère l'envoi des requêtes fournies en paramètres au serveur SMTP qui se trouv
 
 ### Fonctionnement
 
-![scenario](../media/scenario.jpg)
+![scenario](./figures/scenario.jpg)
 
 
 
