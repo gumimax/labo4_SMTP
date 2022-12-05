@@ -77,7 +77,7 @@ _-LOG: final Logger_
     </coordinates>
     <panel_attributes>lt=-
 a
-m1=0..*
+m1=0..1
 m2=1</panel_attributes>
     <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
   </element>
